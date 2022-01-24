@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
+
 import os
 import json
 
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
     # myapp
     'accounts',
     'store',
+    'phonenumber_field',
 
 ]
 
@@ -113,6 +115,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = 'accounts.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
