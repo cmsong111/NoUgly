@@ -63,8 +63,6 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'phonenumber_field',
-
-
 ]
 
 MIDDLEWARE = [
