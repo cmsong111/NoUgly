@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
-import os, json
+import os
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +28,7 @@ secret_file = os.path.join(BASE_DIR, 'secrets.json')  # secrets.json 파일 위�
 
 with open(secret_file) as f:
     secrets = json.loads(f.read())
+
 
 def get_secret(setting):
     try:
@@ -54,6 +56,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+
+    # myapp
+    'accounts',
+
 ]
 
 MIDDLEWARE = [
@@ -92,8 +99,13 @@ WSGI_APPLICATION = 'NoUgly.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'nougly',
+        'USER': 'root',
+        'PASSWORD': '1',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
