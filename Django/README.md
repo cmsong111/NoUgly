@@ -8,3 +8,4 @@
 |djangorestframework|3.13.1|
 |Markdown|3.3.6|
 |Pygments|2.11.2|
+|Pillow|9.0.0|
