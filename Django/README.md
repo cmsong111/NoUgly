@@ -1,4 +1,4 @@
-<h3>0125 관리자 stor app 수정 </h3>
+<h3>0125 관리자 store app 수정 </h3>
 
 <h1>requirements</h1>
 
