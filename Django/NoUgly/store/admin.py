@@ -14,7 +14,7 @@ class ProductkindAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name']
-    list_display = ['fIDX', 'name', 'image_tag', 'grade']
+    list_display = ['fIDX', 'name', 'grade']
     list_per_page = 12
 
     fieldsets = (
