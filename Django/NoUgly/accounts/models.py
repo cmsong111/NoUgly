@@ -5,7 +5,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, name, gender, date, address, phone_num, password=None):
+    def create_user(self, email, password, **extra_fields):
         """
         Create and save a User with the given email and password.
         """
@@ -14,27 +14,22 @@ class UserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            name=name,
-            gender=gender,
-            date=date,
-            address=address,
-            phone_num=phone_num
+            # self.normalize_email? - >email을 정규화
+            # -> @ 뒤에 값을 대소문자 구분 x로 만듦으로서 다중 가입 방지
+            **extra_fields
         )
         user.set_password(password)
-        user.save(using=self._db)
+        user.save()
         return user
 
-    def create_superuser(self, email, name, gender, date, address, phone_num, password):
+    def create_superuser(self, email, password, **extra_fields):
         user = self.create_user(
-            email,
-            password=password,
-            name=name,
-            gender=gender,
-            date=date,
-            address=address,
-            phone_num=phone_num,
+            email=email
+
         )
         user.is_admin = True
+        user.set_password(password)
+
         user.save(using=self._db)
         return user
 # Create your models here.
