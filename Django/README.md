@@ -11,3 +11,5 @@
 | Markdown            | 3.3.6   |
 | Pygments            | 2.11.2  |
 | Pillow              | 9.0.0   |
+| django-rest-auth    | 0.9.5   |
+| django-allauth      | 0.47.0  |

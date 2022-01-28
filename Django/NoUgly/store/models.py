@@ -19,7 +19,7 @@ class Product_kind(models.Model):
 
 class Product(models.Model):
     fIDX = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200, verbose_name='이름')
+    name = models.CharField(max_length=200)
     kind = models.ForeignKey(
         Product_kind, on_delete=models.SET_NULL, null=True)
     grade = models.CharField(max_length=5)

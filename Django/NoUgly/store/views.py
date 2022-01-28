@@ -1,14 +1,21 @@
 from django.shortcuts import render
-from .serializers import ProductSerializer
-from .models import Product
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from django.http import Http404
+from .serializers import *
+from rest_framework import generics, permissions, viewsets
 
 # Create your views here.
-class ProductList(APIView):
-    def get(self, request):
-        products = Product.objects.all()
-        serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
+
+
+class ProductKindViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Product_kind.objects.all()
+    serializer_class = ProductKindSerializer
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly, ]
+    
+    
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    http_method_names = ['post', 'get', 'put', 'delete']
+
+
+
