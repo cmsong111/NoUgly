@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.conf import settings
 
@@ -19,7 +20,7 @@ class Product_kind(models.Model):
 
 class Product(models.Model):
     fIDX = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name='이름')
     kind = models.ForeignKey(
         Product_kind, on_delete=models.SET_NULL, null=True)
     grade = models.CharField(max_length=5)
@@ -27,7 +28,7 @@ class Product(models.Model):
     weight = models.IntegerField()
     field = models.TextField()
     price = models.IntegerField()
-    image = models.ImageField()
+    image = models.ImageField(default = 'default_image.jpg')
 
     def __str__(self) -> str:
         return self.name
@@ -53,8 +54,6 @@ class Destination(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='회원', null=True)
 
 # 장바구니
-
-
 class Cart_product(models.Model):
     fIDX = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     uIDX = models.ForeignKey(

@@ -10,7 +10,7 @@ class ProductSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Product
-        fields = ('fIDX', 'name', 'kind', 'grade', 'date', 'weight', 'field', 'price')
+        fields = ('fIDX', 'name', 'kind', 'grade', 'date', 'weight', 'field', 'price', 'image')
         
         
 
