@@ -8,6 +8,7 @@ from django.conf import settings
 
 class Product_kind(models.Model):
     kind = models.CharField(max_length=30)
+    id = models.AutoField(primary_key=True)
 
     def __str__(self) -> str:
         return self.kind
