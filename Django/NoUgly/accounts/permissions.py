@@ -14,5 +14,5 @@ class IsUserOrReadOnly(permissions.BasePermission):
             # 즉 GET, OPTIONS, HEAD를 의미한다!
             return True
 
-        # U와 D는 (그 이외 http 요청) Board의 user만 가능하게한다
+        # U와 D는 (그 이외 http 요청) Store의 user만 가능하게한다
         return obj.uIDX == request.user

@@ -6,13 +6,17 @@ from rest_framework_jwt.settings import api_settings
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_auth.serializers import LoginSerializer
 
-User = get_user_model()
 
 
-
-
+# JWT 사용을 위한 설정
 JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER
+
+
+# 기본 유저 모델 불러오기
+User = get_user_model()
+
+#회원가입
 class CustomRegisterSerializer(RegisterSerializer):
     # 기본 설정 필드: username, password, email
 
@@ -25,7 +29,7 @@ class CustomRegisterSerializer(RegisterSerializer):
     phone_num = serializers.CharField(max_length=16)
 
 
-
+#로그인
 class UserLoginSerializer(LoginSerializer):
     # email = serializers.EmailField( max_length=255)
     # password = serializers.CharField(max_length=128, write_only=True)
@@ -57,8 +61,7 @@ class UserLoginSerializer(LoginSerializer):
      # 기본 설정 필드: username, password, email
     username = None
         
-
-
+#사용자 정보추출
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
