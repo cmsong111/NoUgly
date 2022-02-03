@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
-from pathlib import Path
-
-
 import datetime
 import os
 import json
@@ -188,6 +185,9 @@ REST_USE_JWT = True
 SITE_ID = 1
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 ## DRF 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -224,3 +224,4 @@ JWT_AUTH = {
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28), # JWT 토큰 갱신 유효기간
     # import datetime 상단에 import 하기
 }
+
