@@ -1,6 +1,6 @@
 from enum import unique
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
 
 class UserManager(BaseUserManager):
@@ -35,7 +35,7 @@ class UserManager(BaseUserManager):
 # Create your models here.
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name='email',
         max_length=255,
@@ -46,20 +46,23 @@ class User(AbstractBaseUser):
         ('여', '여자')
     }
     name = models.CharField(max_length=15)
-    date = models.DateField()
+    date = models.DateField(blank=True)
 
     gender = models.CharField(max_length=20, choices=Gender_choices)
 
     address = models.CharField(max_length=250, blank=True, null=True)
-    phone_num = models.CharField(max_length=16, null=False, unique=True)
+    phone_num = models.CharField(max_length=16,blank=True, null=True, unique=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    
+  
 
 
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'date', 'gender', 'phone_num', 'address']
 
     class Meta:
