@@ -15,9 +15,8 @@ class ProductKindViewSet(viewsets.ReadOnlyModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    
+
     permission_classes = [
       permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly ]
     http_method_names = ['post', 'get', 'put', 'delete']
-
-
-
