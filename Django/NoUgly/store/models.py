@@ -44,8 +44,6 @@ class Order(models.Model):
     fIDX = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
 
 # 배송지
-
-
 class Destination(models.Model):
     key = models.AutoField(primary_key=True)
     zipcode = models.IntegerField()

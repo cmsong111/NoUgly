@@ -12,7 +12,7 @@ class CustomUserAccountAdapter(DefaultAccountAdapter):
         data = form.cleaned_data
 
         user_field(user, 'name', request.data.get('name', ''))
-        user.date = data.get('date', datetime.datetime.now())
+        user_field(user, 'date', request.data.get('date', datetime.datetime.now()))
         user_field(user, 'gender', request.data.get('gender', '남'))
         user_field(user, 'address', request.data.get('address', ''))
         user_field(user, 'phone_num', request.data.get('phone_num', ''))
