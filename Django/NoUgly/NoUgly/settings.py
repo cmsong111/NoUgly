@@ -46,6 +46,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# 배포 시
+# ALLOWED_HOSTS = ['cmsong111.pythonanywhere.com']
+
+
 
 # Application definition
 
@@ -122,6 +126,19 @@ DATABASES = {
     }
 }
 
+# 배포 시
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'cmsong111$nougly',
+#         'USER': 'cmsong111',
+#         'PASSWORD': '1q2w3e4r!',
+#         'HOST': 'cmsong111.mysql.pythonanywhere-services.com',
+#         'PORT': '3306',
+#         'OPTIONS': {'charset': 'utf8mb4'},
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -156,12 +173,15 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+# 배포시
+# USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
