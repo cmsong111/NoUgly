@@ -5,8 +5,6 @@ from django.conf import settings
 # Create your models here.
 
 # 농작물 종류
-
-
 class Product_kind(models.Model):
     kind = models.CharField(max_length=30)
     id = models.AutoField(primary_key=True)
@@ -16,8 +14,6 @@ class Product_kind(models.Model):
 
 # 어글리 농작물
 # 농장물의 종류가 삭제해도 상품정보가 사라지면 안됨
-
-
 class Product(models.Model):
     fIDX = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, verbose_name='이름')
@@ -33,7 +29,7 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.name
 
-
+# 주문내역
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
     count = models.IntegerField()
