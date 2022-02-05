@@ -15,3 +15,9 @@ class ProductKindSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product_kind
         fields = '__all__'
+
+class ProductDetail(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Product
+        fields = '__all__'

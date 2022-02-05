@@ -1,7 +1,14 @@
-from django.shortcuts import render
+import imp
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from store import *
+
 from .serializers import *
 from rest_framework import generics, permissions, viewsets
 from accounts.permissions import IsUserOrReadOnly
+
+
 # Create your views here.
 
 
@@ -19,3 +26,10 @@ class ProductViewSet(viewsets.ModelViewSet):
     permission_classes = [
       permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly ]
     http_method_names = ['post', 'get', 'put', 'delete']
+
+class ProductDetailViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductDetail
+
+    permission_classes = [
+      permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly ]
