@@ -27,9 +27,3 @@ class ProductViewSet(viewsets.ModelViewSet):
       permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly ]
     http_method_names = ['post', 'get', 'put', 'delete']
 
-class ProductDetailViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductDetail
-
-    permission_classes = [
-      permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly ]
