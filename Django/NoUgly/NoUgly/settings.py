@@ -126,18 +126,7 @@ DATABASES = {
     }
 }
 
-# 배포 시
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'cmsong111$nougly',
-#         'USER': 'cmsong111',
-#         'PASSWORD': '1q2w3e4r!',
-#         'HOST': 'cmsong111.mysql.pythonanywhere-services.com',
-#         'PORT': '3306',
-#         'OPTIONS': {'charset': 'utf8mb4'},
-#     }
-# }
+
 
 
 # Password validation
