@@ -9,7 +9,6 @@ router = DefaultRouter()
 
 router.register(r'product_kinds', ProductKindViewSet)
 router.register(r'product', ProductViewSet)
-router.register(r'product/<int:pk>/', ProductDetailViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
