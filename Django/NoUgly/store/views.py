@@ -1,8 +1,10 @@
+from itertools import product
 from django.shortcuts import render
 from .serializers import *
 from rest_framework import generics, permissions, viewsets
 from accounts.permissions import IsUserOrReadOnly
 # Create your views here.
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ProductKindViewSet(viewsets.ReadOnlyModelViewSet):
@@ -15,7 +17,18 @@ class ProductKindViewSet(viewsets.ReadOnlyModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['kind']
 
+    # def get_queryset(self):
+    #     queryset =  Product.objects.all()
+    #     kind = self.request.query_params.get("kind", "None")
+    #     if kind is not None:
+    #         queryset = queryset.filter(product__kind=kind)
+    #     return queryset
+  
+    
+    
     permission_classes = [
       permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly ]
     http_method_names = ['post', 'get', 'put', 'delete']
