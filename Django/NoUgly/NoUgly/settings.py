@@ -14,7 +14,6 @@ from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 import datetime
 import os
-import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,31 +23,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-secret_file = os.path.join(BASE_DIR, 'secrets.json')  # secrets.json 파일 위치를 명시
-
-with open(secret_file) as f:
-    secrets = json.loads(f.read())
 
 
-def get_secret(setting):
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_msg = "Set the {} environment variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
-
-
-SECRET_KEY = get_secret("SECRET_KEY")
+SECRET_KEY = os.environ.get('NOUGLY_SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('NOUGLY_DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # 배포 시
 # ALLOWED_HOSTS = ['cmsong111.pythonanywhere.com']
-
 
 
 # Application definition
@@ -120,14 +106,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'nougly',
         'USER': 'root',
-        'PASSWORD': '1',
+        'PASSWORD': os.environ.get('Database_Password'),
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
-
-
 
 
 # Password validation
@@ -171,7 +155,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -198,14 +181,14 @@ SITE_ID = 1
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-## DRF 
+# DRF
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated', # 인증된 사용자만 접근 가능
-        'rest_framework.permissions.IsAdminUser', # 관리자만 접근 가능
-        'rest_framework.permissions.AllowAny', # 누구나 접근 가능
+        'rest_framework.permissions.IsAuthenticated',  # 인증된 사용자만 접근 가능
+        'rest_framework.permissions.IsAdminUser',  # 관리자만 접근 가능
+        'rest_framework.permissions.AllowAny',  # 누구나 접근 가능
     ),
-	
+
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         # 'rest_framework.authentication.TokenAuthentication',
@@ -229,10 +212,10 @@ REST_AUTH_SERIALIZERS = {
 
 JWT_AUTH = {
     'JWT_SECRET_KEY': SECRET_KEY,
-    'JWT_ALGORITHM': 'HS256', # 암호화 알고리즘
-    'JWT_ALLOW_REFRESH': True, # refresh 사용 여부
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7), # 유효기간 설정
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28), # JWT 토큰 갱신 유효기간
+    'JWT_ALGORITHM': 'HS256',  # 암호화 알고리즘
+    'JWT_ALLOW_REFRESH': True,  # refresh 사용 여부
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 유효기간 설정
+    # JWT 토큰 갱신 유효기간
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28),
     # import datetime 상단에 import 하기
 }
-
