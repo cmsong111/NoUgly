@@ -10,8 +10,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class ProductKindSerializer(serializers.ModelSerializer):
-    Product_kind.products = ProductSerializer(many=True)
+    products = ProductSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product_kind
-        fields = ['id', 'kind']
+        fields = '__all__'
