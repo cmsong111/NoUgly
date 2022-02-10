@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_auth.registration',
+    'django_filters',
 
     # myapp
     'accounts',
@@ -211,6 +212,7 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend'),
 }
 
 ACCOUNT_ADAPTER = 'accounts.adapters.CustomUserAccountAdapter'
