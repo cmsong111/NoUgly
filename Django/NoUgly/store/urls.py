@@ -3,7 +3,6 @@ from .views import *
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-app_nam = 'store'
 
 router = DefaultRouter()
 
