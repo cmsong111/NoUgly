@@ -11,24 +11,14 @@ class ProductKindViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product_kind.objects.all()
     serializer_class = ProductKindSerializer
     permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly ]
-    
-    
+        permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
+
+
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['kind']
-
-    # def get_queryset(self):
-    #     queryset =  Product.objects.all()
-    #     kind = self.request.query_params.get("kind", "None")
-    #     if kind is not None:
-    #         queryset = queryset.filter(product__kind=kind)
-    #     return queryset
-  
-    
-    
     permission_classes = [
-      permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly ]
+        permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
     http_method_names = ['post', 'get', 'put', 'delete']
