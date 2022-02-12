@@ -23,4 +23,11 @@ class ProductViewSet(viewsets.ModelViewSet):
     filterset_fields = ['kind']
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
-    http_method_names = ['post', 'get', 'put', 'delete']
+    # http_method_names = ['post', 'get', 'put', 'delete']
+
+
+class CartProuductViewSet(viewsets.ModelViewSet):
+    queryset = Cart_product.objects.all()
+    serializer_class = CartProuductSerializer
+    permission_classes = [
+        permissions.IsAuthenticated, IsUserOrReadOnly]
