@@ -6,7 +6,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = ['image']
+        fields = '__all__'
 
 
 class ProductKindSerializer(serializers.ModelSerializer):
