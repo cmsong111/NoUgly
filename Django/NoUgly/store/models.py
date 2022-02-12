@@ -65,3 +65,6 @@ class Cart_product(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='회원', null=True)
     price = models.PositiveIntegerField()
     count = models.PositiveIntegerField()
+
+    def __str__(self):
+        return (str(self.uIDX) + '의 장바구니에서 ' + str(self.fIDX))

@@ -9,6 +9,13 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ProductNamePriceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = ['name', 'price']
+
+
 class ProductKindSerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True, read_only=True)
 
@@ -18,6 +25,8 @@ class ProductKindSerializer(serializers.ModelSerializer):
 
 
 class CartProuductSerializer(serializers.ModelSerializer):
+    prducts = ProductNamePriceSerializer(many=True, read_only=True)
+
     class Meta:
         model = Cart_product
-        field = '__all__'
+        fields = '__all__'
