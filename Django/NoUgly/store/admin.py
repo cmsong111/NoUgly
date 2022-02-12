@@ -42,5 +42,4 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ['order_id', 'purchase_time', 'uIDX']
 
 
-admin.site.register(Destination)
 admin.site.register(Cart_product)
