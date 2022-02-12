@@ -51,13 +51,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     gender = models.CharField(max_length=20, choices=Gender_choices)
 
     address = models.CharField(max_length=250, blank=True, null=True)
-    phone_num = models.CharField(max_length=16,blank=True, null=True, unique=True)
+    phone_num = models.CharField(
+        max_length=16, blank=True, null=True, unique=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    
-  
-
 
     objects = UserManager()
 
@@ -82,3 +80,19 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class Destination(models.Model):
+    key = models.AutoField(primary_key=True)
+    zipcode = models.IntegerField()
+    address = models.CharField(max_length=500)
+    uIDX = models.ForeignKey(
+        User, on_delete=models.SET_NULL, related_name='users', verbose_name='회원', null=True)
+
+    def __str__(self) -> str:
+        return self.address
+
+    class Meta:
+        db_table = 'destinations'
+        verbose_name = '배송지',
+        verbose_name_plural = '배송지'

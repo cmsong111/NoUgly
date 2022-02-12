@@ -45,22 +45,17 @@ class Order(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='회원', null=True)
     fIDX = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
 
-# 배송지
-
-
-class Destination(models.Model):
-    key = models.AutoField(primary_key=True)
-    zipcode = models.IntegerField()
-    adress = models.CharField(max_length=500)
-    uIDX = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='users', verbose_name='회원', null=True)
 
 # 장바구니
 
 
 class Cart_product(models.Model):
-    fIDX = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    fIDX = models.ForeignKey(
+        Product, related_name='products', on_delete=models.SET_NULL, null=True)
     uIDX = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='회원', null=True)
     price = models.PositiveIntegerField()
     count = models.PositiveIntegerField()
+
+    def __str__(self):
+        return (str(self.uIDX) + '의 장바구니에서 ' + str(self.fIDX))
