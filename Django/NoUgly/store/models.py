@@ -45,15 +45,6 @@ class Order(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='회원', null=True)
     fIDX = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
 
-# 배송지
-
-
-class Destination(models.Model):
-    key = models.AutoField(primary_key=True)
-    zipcode = models.IntegerField()
-    adress = models.CharField(max_length=500)
-    uIDX = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='users', verbose_name='회원', null=True)
 
 # 장바구니
 

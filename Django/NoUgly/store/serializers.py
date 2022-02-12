@@ -17,7 +17,7 @@ class ProductNamePriceSerializer(serializers.ModelSerializer):
 
 
 class ProductKindSerializer(serializers.ModelSerializer):
-    # 필요없음
+
     # products = ProductSerializer(many=True, read_only=True)
 
     class Meta:
