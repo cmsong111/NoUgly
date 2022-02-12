@@ -59,8 +59,12 @@ class Destination(models.Model):
 
 
 class Cart_product(models.Model):
-    fIDX = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    fIDX = models.ForeignKey(
+        Product, related_name='products', on_delete=models.SET_NULL, null=True)
     uIDX = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='회원', null=True)
     price = models.PositiveIntegerField()
     count = models.PositiveIntegerField()
+
+    def __str__(self):
+        return (str(self.uIDX) + '의 장바구니에서 ' + str(self.fIDX))
