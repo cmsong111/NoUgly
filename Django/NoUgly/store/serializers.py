@@ -13,12 +13,12 @@ class ProductNamePriceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['name', 'price']
+        fields = ['name', 'price', 'image']
 
 
 class ProductKindSerializer(serializers.ModelSerializer):
 
-    # products = ProductSerializer(many=True, read_only=True)
+    products = ProductSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product_kind
@@ -26,8 +26,13 @@ class ProductKindSerializer(serializers.ModelSerializer):
 
 
 class CartProuductSerializer(serializers.ModelSerializer):
-    prducts = ProductNamePriceSerializer(many=True, read_only=True)
 
     class Meta:
         model = Cart_product
         fields = '__all__'
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response['fIDX'] = ProductNamePriceSerializer(
+            instance.fIDX).data
+        return response
