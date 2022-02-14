@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .serializers import *
 from rest_framework import generics, permissions, viewsets
 from accounts.permissions import IsUserOrReadOnly
-from .pagination import ProductPageNumberPagination
+from .pagination import CartProuductNumberPagination, ProductPageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 
 
@@ -29,5 +29,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 class CartProuductViewSet(viewsets.ModelViewSet):
     queryset = Cart_product.objects.all()
     serializer_class = CartProuductSerializer
+    pagination_class = CartProuductNumberPagination
+
     permission_classes = [
         permissions.IsAuthenticated, IsUserOrReadOnly]
