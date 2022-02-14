@@ -1,9 +1,15 @@
 from rest_framework import permissions
 
 
-#permissions 오버라이드해줌
+# permissions 오버라이드해줌
 
 class IsUserOrReadOnly(permissions.BasePermission):
+    # custom된 permission! - >해당 물품은 작성자만 수정할 수 있게끔
+    def has_permission(self, request, view):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return request.user.is_authenticated
     # custom된 permission! - >해당 물품은 작성자만 수정할 수 있게끔
 
     def has_object_permission(self, request, view, obj):
