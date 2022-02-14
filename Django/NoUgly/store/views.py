@@ -1,7 +1,5 @@
-from itertools import product
-from django.shortcuts import render
 from .serializers import *
-from rest_framework import generics, permissions, viewsets
+from rest_framework import permissions, viewsets
 from accounts.permissions import IsUserOrReadOnly
 from .pagination import CartProuductNumberPagination, ProductPageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
