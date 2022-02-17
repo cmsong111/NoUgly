@@ -5,6 +5,7 @@ from .pagination import CartProuductNumberPagination, ProductPageNumberPaginatio
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
 
 
 class ProductKindViewSet(viewsets.ReadOnlyModelViewSet):
@@ -18,8 +19,9 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     pagination_class = ProductPageNumberPagination
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
 
+    search_fields = ['name']
     filterset_fields = ['kind']
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
