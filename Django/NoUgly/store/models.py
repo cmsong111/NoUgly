@@ -41,6 +41,9 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def get_random():
+        return Product.objects.order_by("?")
+
 # 주문내역
 
 

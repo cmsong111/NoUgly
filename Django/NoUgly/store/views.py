@@ -23,6 +23,13 @@ class ProductViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
     # http_method_names = ['post', 'get', 'put', 'delete']
 
+class ProductRandomViewSet(viewsets.ModelViewSet):
+    queryset = Product.get_random()[:4]
+    serializer_class = ProductSerializer
+    pagination_class = ProductPageNumberPagination
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
+
 
 class CartProuductViewSet(viewsets.ModelViewSet):
     queryset = Cart_product.objects.all()
@@ -31,3 +38,4 @@ class CartProuductViewSet(viewsets.ModelViewSet):
 
     permission_classes = [
         permissions.IsAuthenticated, IsUserOrReadOnly]
+
