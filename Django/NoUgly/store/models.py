@@ -1,8 +1,7 @@
-from tabnanny import verbose
-from urllib import request
 from django.db import models
 from django.conf import settings
-
+from django.db.models import Max
+import random
 # Create your models here.
 
 # 농작물 종류
@@ -43,8 +42,16 @@ class Product(models.Model):
         return self.name
 
     def get_random():
-        return Product.objects.order_by("?")
+        return Product.objects.order_by('fIDX')
 
+    def get_random3():
+        max_fIDX = Product.objects.all().aggregate(
+            max_fIDX=Max("fIDX"))['max_fIDX']
+        while True:
+            pk = random.randint(1, max_fIDX)
+            product = Product.objects.filter(pk=pk).first()
+            if product:
+                return product
 # 주문내역
 
 

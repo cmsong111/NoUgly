@@ -1,3 +1,5 @@
+from __future__ import barry_as_FLUFL
+from math import prod
 from .serializers import *
 from rest_framework import permissions, viewsets, status
 from accounts.permissions import IsUserOrReadOnly
@@ -27,8 +29,22 @@ class ProductViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
     # http_method_names = ['post', 'get', 'put', 'delete']
 
+
 class ProductRandomViewSet(viewsets.ModelViewSet):
-    queryset = Product.get_random()[:4]
+    queryset = Product.objects.all()
+
+    def get_queryset(self):
+        pr = []
+        count = 0
+        while True:
+            if count == 4:
+                break
+            num = Product.get_random3()
+            if num not in pr:
+                pr.append(num)
+                count += 1
+        return pr
+
     serializer_class = ProductSerializer
     pagination_class = ProductPageNumberPagination
     permission_classes = [
