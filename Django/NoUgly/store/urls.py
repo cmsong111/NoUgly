@@ -8,5 +8,8 @@ router = DefaultRouter()
 router.register(r'product_kinds', ProductKindViewSet)
 router.register(r'products', ProductViewSet)
 router.register(r'cart_products', CartProuductViewSet)
+router.register(r'product_random', ProductRandomViewSet)
+
+
 
 urlpatterns = router.urls
