@@ -1,4 +1,5 @@
 from tabnanny import verbose
+from urllib import request
 from django.db import models
 from django.conf import settings
 
@@ -68,8 +69,9 @@ class Cart_product(models.Model):
         Product, related_name='products', on_delete=models.SET_NULL, null=True)
     uIDX = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='회원', null=True)
-    price = models.PositiveIntegerField()
     quantity = models.PositiveIntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = '장바구니'

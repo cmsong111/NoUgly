@@ -1,3 +1,5 @@
+
+import datetime
 from .models import *
 from rest_framework import serializers
 
@@ -18,7 +20,7 @@ class ProductNamePriceSerializer(serializers.ModelSerializer):
 
 class ProductKindSerializer(serializers.ModelSerializer):
 
-    products = ProductSerializer(many=True, read_only=True)
+    # products = ProductSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product_kind
@@ -26,10 +28,9 @@ class ProductKindSerializer(serializers.ModelSerializer):
 
 
 class CartProuductSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Cart_product
-        fields = '__all__'
+        exclude = ['created_at', 'updated_at']
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
