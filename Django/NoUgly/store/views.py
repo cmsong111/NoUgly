@@ -46,7 +46,6 @@ class ProductRandomViewSet(viewsets.ModelViewSet):
         return pr
 
     serializer_class = ProductSerializer
-    pagination_class = ProductPageNumberPagination
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
 

@@ -57,9 +57,11 @@ class Product(models.Model):
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
-    count = models.IntegerField()
-    price = models.IntegerField()
-    purchase_time = models.DateTimeField()
+    count = models.PositiveIntegerField()
+    price = models.PositiveIntegerField()
+    purchase_time = models.DateTimeField(auto_now_add=True)
+    destination = models.CharField(
+        max_length=500, verbose_name='주소지', null=False)
     uIDX = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='회원', null=True)
     fIDX = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
