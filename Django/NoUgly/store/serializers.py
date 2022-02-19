@@ -37,3 +37,15 @@ class CartProuductSerializer(serializers.ModelSerializer):
         response['fIDX'] = ProductNamePriceSerializer(
             instance.fIDX).data
         return response
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        exclude = ['uIDX']
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response['fIDX'] = ProductNamePriceSerializer(
+            instance.fIDX).data
+        return response

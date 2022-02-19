@@ -71,3 +71,17 @@ class CartProuductViewSet(viewsets.ModelViewSet):
         queryset = Cart_product.objects.filter(uIDX=user)
 
         return queryset
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+    permission_classes = [
+        permissions.IsAuthenticated, IsUserOrReadOnly]
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Order.objects.filter(uIDX=user)
+
+        return queryset
