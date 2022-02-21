@@ -8,6 +8,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter
+from django.db.models import F
 
 
 class ProductKindViewSet(viewsets.ReadOnlyModelViewSet):
@@ -28,6 +29,14 @@ class ProductViewSet(viewsets.ModelViewSet):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
     # http_method_names = ['post', 'get', 'put', 'delete']
+
+    def retrieve(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.hitcount = F('hitcount') + 1
+        obj.save(update_fields=['hitcount', ])
+        obj.refresh_from_db()
+        serializer = self.get_serializer(obj)
+        return Response(serializer.data, status=200)
 
 
 class ProductRandomViewSet(viewsets.ModelViewSet):
@@ -60,7 +69,7 @@ class CartProuductViewSet(viewsets.ModelViewSet):
 
     # 장바구니 전체삭제 구현
 
-    @action(detail=False, methods=['DELETE'])
+    @ action(detail=False, methods=['DELETE'])
     def allDelete(self, request, *args, **kwargs):
         if request.method == 'DELETE':
             queryset = self.get_queryset().delete()

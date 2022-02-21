@@ -33,6 +33,7 @@ class Product(models.Model):
     field = models.TextField(default='')
     price = models.IntegerField()
     image = models.ImageField(default='default_image.jpg')
+    hitcount = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name = '제품'
