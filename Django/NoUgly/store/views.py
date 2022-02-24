@@ -7,7 +7,7 @@ from .pagination import CartProuductNumberPagination, ProductPageNumberPaginatio
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
 from django.db.models import F
 
 
@@ -22,27 +22,16 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     pagination_class = ProductPageNumberPagination
-    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
 
     search_fields = ['name']
     filterset_fields = ['kind']
+    ordering_fields = ['hitcount']
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
-    # http_method_names = ['post', 'get', 'put', 'delete']
 
-    def retrieve(self, request, *args, **kwargs):
-        obj = self.get_object()
-        obj.hitcount = F('hitcount') + 1
-        obj.save(update_fields=['hitcount', ])
-        obj.refresh_from_db()
-        serializer = self.get_serializer(obj)
-        return Response(serializer.data, status=200)
-
-
-class ProductRandomViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-
-    def get_queryset(self):
+    @action(detail=False, methods=['GET'])
+    def random(self, request, *args, **kwargs):
         pr = []
         count = 0
         while True:
@@ -52,11 +41,16 @@ class ProductRandomViewSet(viewsets.ModelViewSet):
             if num not in pr:
                 pr.append(num)
                 count += 1
-        return pr
+        serializer = self.get_serializer(pr, many=True)
+        return Response(serializer.data, status=200)
 
-    serializer_class = ProductSerializer
-    permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
+    def retrieve(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.hitcount = F('hitcount') + 1
+        obj.save(update_fields=['hitcount', ])
+        obj.refresh_from_db()
+        serializer = self.get_serializer(obj)
+        return Response(serializer.data, status=200)
 
 
 class CartProuductViewSet(viewsets.ModelViewSet):
