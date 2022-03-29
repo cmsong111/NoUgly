@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="home">#DCE7D5</color>
+    <color name="category">#DAE8D7</color>
+    <color name="search">#F0F1C7</color>
+    <color name="mypage">#E7C794</color>
+
+    <!--search color-->
+    <color name="floatingSearch_backgroundColor">#DCE7D5</color>
+    <color name="floatingSearch_viewSearchInputTextColor">#ffffffff</color>
+    <color name="floatingSearch_viewSuggestionItemTextColor">#ffffffff</color>
+    <color name="floatingSearch_hintTextColor">#ffffffff</color>
+    <color name="floatingSearch_dividerColor">#ffffffff</color>
+    <color name="floatingSearch_clearBtnColor">#ffffffff</color>
+    <color name="floatingSearch_leftActionColor">#ffffffff</color>
+    <color name="floatingSearch_menuItemIconColor">#ffffffff</color>
+    <color name="floatingSearch_suggestionRightIconColor">#ffffffff</color>
+    <color name="floatingSearch_actionMenuOverflowColor">#ffffffff</color>
+</resources>

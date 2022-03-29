@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cnb_unselectedColor="#666666">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"
+        app:cnb_iconColor="@color/home" />
+
+    <item
+        android:id="@+id/category"
+        android:icon="@drawable/ic_baseline_category_24"
+        android:title="Category"
+        app:cnb_iconColor="@color/category" />
+
+
+    <item
+        android:id="@+id/search"
+        android:icon="?android:attr/actionModeWebSearchDrawable"
+        android:title="Search"
+        app:cnb_iconColor="@color/search" />
+
+    <item
+        android:id="@+id/mypage"
+        android:icon="@drawable/ic_baseline_person_outline_24"
+        android:title="My Page"
+        app:cnb_iconColor="@color/mypage" />
+
+
+
+</menu>
