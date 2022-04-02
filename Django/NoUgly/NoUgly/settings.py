@@ -63,7 +63,9 @@ INSTALLED_APPS = [
     # myapp
     'accounts',
     'store',
+
     # 'phonenumber_field',
+
 
 ]
 
