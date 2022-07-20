@@ -6,9 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_main.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +24,7 @@ class MainFragment : Fragment() {
     private var param2: String? = null
 
     //CropAdapter에 지정할 Adapter 선언
-    private lateinit var cropAdapter: CropAdapter
+//    private lateinit var cropAdapter: CropAdapter
 
     //액티비티와 동일. 리소스들을 초기화 해주는 단계로 프래그먼트를 생성하면서 넘겨줄 값들이 있다면, 변수에 넣어준다.
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,9 +52,9 @@ class MainFragment : Fragment() {
         var list: ArrayList<MainOutput> = requireActivity().intent!!.extras!!.get("DataList") as ArrayList<MainOutput>
         Log.e("MainFragment", "Data List : ${list}")
 
-        cropAdapter = CropAdapter(list)
-        today_crop_list.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        today_crop_list.adapter = cropAdapter
+//        cropAdapter = CropAdapter(list)
+//        today_crop_list.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+//        today_crop_list.adapter = cropAdapter
     }
 
 
