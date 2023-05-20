@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gdsc.nougly">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- http 통신 인터넷 퍼미션 선언 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -25,21 +24,24 @@
             android:name=".Login"
             android:exported="true">
             <!-- 앱 시작 지점 지정 해주는 소스 코드. 무조건 <activity> ~ </activity> 내에서만 작동한다. -->
-
-        </activity>
-        <activity
-            android:name=".Main"
-            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Main"
+            android:exported="true" >
+
+        </activity>
+
         <!-- 회원가입 실행 액티비티 -->
         <activity
             android:name=".Register"
             android:exported="true" />
+
         <!-- 메인 실행 액티비티 -->
         <activity
             android:name=".MainActivity"

@@ -13,9 +13,7 @@
         android:layout_marginStart="156dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="156dp"
-        android:layout_marginBottom="248dp"
         android:text="REGISTER NOW"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SignInButton" />
@@ -64,7 +62,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginText" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginText"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/wrongTextView"
@@ -81,14 +80,15 @@
     <Button
         android:id="@+id/SignInButton"
         android:layout_width="259dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginStart="76dp"
         android:layout_marginTop="31dp"
         android:layout_marginEnd="76dp"
         android:text="SIGN-IN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PwEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/PwEditText"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

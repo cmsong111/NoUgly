@@ -22,7 +22,7 @@ class Main : AppCompatActivity() {
     //var fragmentManager: FragmentManager = supportFragmentManager
     //var fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-    lateinit var cropAdapter: CropAdapter
+//    lateinit var cropAdapter: CropAdapter
     val datas = mutableListOf<MainOutput>()
 
     var fragment = MainFragment()
